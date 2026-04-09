@@ -99,7 +99,8 @@ if "stock_data" in st.session_state and st.session_state["stock_data"]:
 
         # Save chart as temporary PNG file and read image bytes
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmpfile:
-            fig.write_image(tmpfile.name)
+            # We dwingen het gebruik van de kaleido engine af
+fig.write_image(tmpfile.name, engine="kaleido")
             tmpfile_path = tmpfile.name
         with open(tmpfile_path, "rb") as f:
             image_bytes = f.read()
